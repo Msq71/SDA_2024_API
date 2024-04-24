@@ -1,14 +1,17 @@
-package day01;
+package day02;
 
+import base_urls.RestFullBaseUrl;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
-import org.testng.Assert;
+import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import static org.testng.AssertJUnit.assertTrue;
 
-public class C06_QueryParameters {
+public class C07_RequestSpecification extends RestFullBaseUrl {
+
      /*
     Given
        https://restful-booker.herokuapp.com/booking
@@ -24,27 +27,32 @@ public class C06_QueryParameters {
     public void queryParametersTest() {
 
 //        1. Set the URL
-        String url = "https://restful-booker.herokuapp.com/booking?firstname=John&lastname=Smith";
+        spec.pathParam("first", "booking")
+                .queryParams("firstname", "John"
+                        , "lastname", "Smith");
+
+
 //        2. Set the expected data
 
 //        3. Send the request and get the response
-        Response response = given().when().get(url);
+        Response response = given(spec).when().get("{first}");
         response.prettyPrint();
-
 //        4. Do Assertion
 
         //1st way:
-        //use
-        // response.then().body("bookingid",hasSize(greaterThan(0)));
-        //response.then().body(containsString("bookingid"));
-        response.then()
+
+        response
+                .then()
+                .statusCode(200);
+
+        String responseStr = response.asString();
+        assertTrue(responseStr.contains("bookingid"));
+
+        //2nd way:
+        response
+                .then()
                 .statusCode(200)
-                .body("[0]", notNullValue())
                 .body(containsString("bookingid"))
                 .body("bookingid", hasSize(greaterThan(0)));
-        //2nd way:
-        //change response to String and play with it
-        String responseString = response.asString();
-        assertTrue(responseString.contains("bookingid"));
     }
 }

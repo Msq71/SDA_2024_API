@@ -1,21 +1,18 @@
-package Homeworks.Hw2;
+package Homeworks.day2;
 
-import base_urls.Hw2_BaseUrl;
-import io.restassured.http.ContentType;
+import base_urls.Hw_BaseUrl;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
-public class Task03 extends Hw2_BaseUrl {
+public class Task03 extends Hw_BaseUrl {
     /*
        Given
               https://reqres.in/api/unknown/

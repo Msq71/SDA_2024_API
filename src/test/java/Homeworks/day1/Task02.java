@@ -1,6 +1,5 @@
-package Homeworks.Hw1;
+package Homeworks.day1;
 
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 

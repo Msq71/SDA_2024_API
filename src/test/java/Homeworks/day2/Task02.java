@@ -1,6 +1,6 @@
-package Homeworks.Hw2;
+package Homeworks.day2;
 
-import base_urls.Hw2_BaseUrl;
+import base_urls.Hw_BaseUrl;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -10,7 +10,7 @@ import org.testng.asserts.SoftAssert;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class Task02 extends Hw2_BaseUrl {
+public class Task02 extends Hw_BaseUrl {
     /*
         Given
           https://reqres.in/api/unknown/3

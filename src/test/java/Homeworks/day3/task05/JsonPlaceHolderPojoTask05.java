@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonPlaceHolderPojoTask05 {
+
+    public class pet {
+
+    }
     /*
     POJO = plain Old Java Object ----> Perfect template to create instances
 

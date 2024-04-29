@@ -1,6 +1,8 @@
 package pojos;
 
-import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 public class BookingPojo {
     /*

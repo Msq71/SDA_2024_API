@@ -87,7 +87,7 @@ public class C27_RevisionExample2 extends GorestBaseUrl {
         //System.out.println("females = " + females);
         //System.out.println("males = " + males);
         int numOfFemales = females.size();
-        int numOfMales = females.size();
+        int numOfMales = males.size();
         assertTrue(numOfFemales >= numOfMales);
     }
 }

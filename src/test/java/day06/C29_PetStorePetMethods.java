@@ -1,4 +1,4 @@
-package Homeworks.day3.task05;
+package day06;
 
 import base_urls.RestFullBaseUrl;
 import io.restassured.response.Response;
@@ -8,7 +8,7 @@ import pojos.PetStore.PetStoreResponse;
 import static io.restassured.RestAssured.given;
 import static utilities.ObjectMapperUtilities.convertJsonToJava;
 
-public class Task05 extends RestFullBaseUrl {
+public class C29_PetStorePetMethods extends RestFullBaseUrl {
     /*
     //Write an automation test that will create, read, update, delete a 'pet' using the
     "https://petstore.swagger.io/" document

@@ -1,22 +1,47 @@
-package Homeworks.day6;
+package day7;
 
 import base_urls.PetStoreBaseUrl;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import pojos.BookingPojo;
-import pojos.BookingResponsePojo;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.AssertJUnit.assertEquals;
 import static utilities.ObjectMapperUtilities.convertJsonToJava;
 
-public class GetBooking extends PetStoreBaseUrl {
+public class C32_GetBooking extends PetStoreBaseUrl {
+    /*
+    Given
+        url: "https://restful-booker.herokuapp.com/booking/:id
 
-    @Test
-    public void test() {
+    When
+        user send GET request
+    Then
+        verify status code is 200
+    And
+        response is like :
+        {
+    "bookingid": 1,
+    "booking": {
+        "firstname": "Jim",
+        "lastname": "Brown",
+        "totalprice": 111,
+        "depositpaid": true,
+        "bookingdates": {
+            "checkin": "2018-01-01",
+            "checkout": "2019-01-01"
+        },
+        "additionalneeds": "Breakfast"
+    }
+}
+
+     */
+
+    @Test(dependsOnMethods = {"day7.C31_CreateBooking.CreateBookingTest"})
+    public void getBookingTest() {
 
         //Set the url
-        spec.pathParams("first", "booking", "second", 1386);
+        spec.pathParams("first", "booking", "second", C31_CreateBooking.bookingId);
 
         //Set Expected Data
         String expectedStr = """
@@ -37,6 +62,7 @@ public class GetBooking extends PetStoreBaseUrl {
         //Send the request and get the response
         Response response = given(spec).when().get("{first}/{second}");
         response.prettyPrint();
+
 
         BookingPojo actualData = convertJsonToJava(response.asString(), BookingPojo.class);
 

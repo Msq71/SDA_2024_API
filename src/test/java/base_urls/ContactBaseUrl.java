@@ -3,15 +3,13 @@ package base_urls;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
-
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeMethod;
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
 
+import static utilities.AuthenticationContact.generateToken;
 import static utilities.AuthenticationRestful.getToken;
 
-public class PetStoreBaseUrl {
+public class ContactBaseUrl {
 
     protected RequestSpecification spec;
 
@@ -20,8 +18,10 @@ public class PetStoreBaseUrl {
 
         spec = new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
-                .setBaseUri("https://restful-booker.herokuapp.com")
-                .addHeader("Cookie","token="+getToken())
+                .setBaseUri("https://thinking-tester-contact-list.herokuapp.com/")
+                .addHeader("Authorization", "Bearer " + generateToken())
                 .build();
+
+
     }
 }

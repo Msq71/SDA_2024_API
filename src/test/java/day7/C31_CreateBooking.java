@@ -1,18 +1,17 @@
-package Homeworks.day6;
+package day7;
 
 import base_urls.PetStoreBaseUrl;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import pojos.BookingPojo;
 import pojos.BookingResponsePojo;
-import utilities.ObjectMapperUtilities;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.AssertJUnit.assertEquals;
 import static utilities.ObjectMapperUtilities.convertJsonToJava;
 
-public class CreateBooking extends PetStoreBaseUrl {
+public class C31_CreateBooking extends PetStoreBaseUrl {
+
 
     /*
    Given
@@ -48,6 +47,10 @@ public class CreateBooking extends PetStoreBaseUrl {
     }
 }
 */
+
+    public static int bookingId;
+    static BookingPojo payload;
+
     @Test
     public void CreateBookingTest() {
 
@@ -55,7 +58,7 @@ public class CreateBooking extends PetStoreBaseUrl {
         spec.pathParam("first", "booking");
 
         //Set Expected Data
-        String expectedStr = """
+        String payloadStr = """
                 {
                                 "firstname": "Mohammed",
                                 "lastname": "Alqahtani",
@@ -68,28 +71,32 @@ public class CreateBooking extends PetStoreBaseUrl {
                             "additionalneeds": "Breakfast"
                         }""";
 
-        BookingPojo payLoad = convertJsonToJava(expectedStr, BookingPojo.class);
+        payload = convertJsonToJava(payloadStr, BookingPojo.class);
 
         //Send the request and get the response
-        Response response = given(spec).body(payLoad).when().post("{first}");
+        Response response = given(spec).body(payload).when().post("{first}");
         response.prettyPrint();
-
-        BookingResponsePojo actualData = convertJsonToJava(response.asString(), BookingResponsePojo.class);
 
 
         //Do assertion
+        BookingResponsePojo actualData = convertJsonToJava(response.asString(), BookingResponsePojo.class);
+
+
         assertEquals(200, response.statusCode());
-        assertEquals(payLoad.getFirstname(), actualData.getBooking().getFirstname());
-        assertEquals(payLoad.getLastname(), actualData.getBooking().getLastname());
-        assertEquals(payLoad.getTotalprice(), actualData.getBooking().getTotalprice());
-        assertEquals(payLoad.getDepositpaid(), actualData.getBooking().getDepositpaid());
-        assertEquals(payLoad.getBookingdates().getCheckin(), actualData.getBooking().getBookingdates().getCheckin());
-        assertEquals(payLoad.getBookingdates().getCheckout(), actualData.getBooking().getBookingdates().getCheckout());
-        assertEquals(payLoad.getAdditionalneeds(), actualData.getBooking().getAdditionalneeds());
+        assertEquals(payload.getFirstname(), actualData.getBooking().getFirstname());
+        assertEquals(payload.getLastname(), actualData.getBooking().getLastname());
+        assertEquals(payload.getTotalprice(), actualData.getBooking().getTotalprice());
+        assertEquals(payload.getDepositpaid(), actualData.getBooking().getDepositpaid());
+        assertEquals(payload.getBookingdates().getCheckin(), actualData.getBooking().getBookingdates().getCheckin());
+        assertEquals(payload.getBookingdates().getCheckout(), actualData.getBooking().getBookingdates().getCheckout());
+        assertEquals(payload.getAdditionalneeds(), actualData.getBooking().getAdditionalneeds());
+
+        bookingId = actualData.getBookingid();
+        System.out.println("bookingId = " + bookingId);
+
+
     }
-
-
-
+    
 }
 
 

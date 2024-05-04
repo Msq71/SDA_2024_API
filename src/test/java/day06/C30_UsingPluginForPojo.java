@@ -1,8 +1,9 @@
 package day06;
 
+import base_urls.GorestBaseUrl;
 import org.testng.annotations.Test;
 
-public class C30_UsingPluginForPojo {
+public class C30_UsingPluginForPojo extends GorestBaseUrl {
     /*
 Given
     https://gorest.co.in/public/v1/users?id=6743944
@@ -40,7 +41,7 @@ And
 
     @Test
     public void test(){
-        //Send the url
+        spec.pathParams("first","","second","").queryParam("id","");
         String expectedData = "";
 
 
